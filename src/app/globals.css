@@ -3,24 +3,92 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #28403d;
+  --secondary: #b29943;
+  --tertiary: #677a71;
+  --light-gray: #b8babc;
+  --white: #ffffff;
+  
+  /* Typography scale variables */
+  --base-font-size: 20px;
+  --scale-ratio: 1.250;
+  
+  /* Calculated font sizes using the modular scale */
+  --font-size-small: calc(var(--base-font-size) / var(--scale-ratio));
+  --font-size-base: var(--base-font-size);
+  --font-size-lg: calc(var(--font-size-base) * var(--scale-ratio));
+  --font-size-xl: calc(var(--font-size-lg) * var(--scale-ratio));
+  --font-size-2xl: calc(var(--font-size-xl) * var(--scale-ratio));
+  --font-size-3xl: calc(var(--font-size-2xl) * var(--scale-ratio));
+  --font-size-4xl: calc(var(--font-size-3xl) * var(--scale-ratio));
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* May add dark mode later */
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-light-gray: var(--light-gray);
+  --color-white: var(--white);
+  --font-newsreader: var(--font-newsreader);
+  --font-ibm-plex-mono: var(--font-ibm-plex-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-newsreader);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
 }
+
+/* Typography scale using @apply */
+h1 {
+  font-size: var(--font-size-4xl);
+  @apply font-normal leading-tight;
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  @apply font-normal leading-tight;
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+  @apply font-normal leading-snug;
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+  @apply font-normal leading-snug;
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+  @apply font-normal leading-normal;
+}
+
+h6 {
+  font-size: var(--font-size-base);
+  @apply font-medium leading-normal;
+}
+
+p {
+  font-size: var(--font-size-base);
+  @apply leading-relaxed;
+}
+
+small {
+  font-size: var(--font-size-small);
+  @apply leading-normal;
+}
+
