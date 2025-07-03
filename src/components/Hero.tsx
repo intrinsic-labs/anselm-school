@@ -69,9 +69,14 @@ export function Hero({ data }: HeroProps) {
           <button className="btn-primary">
             {data.ctaText}
           </button>
-          <button className="btn-outline-primary">
+          <a
+            href="https://donate.stripe.com/eVqaEW1H2gMB4aI4EC4c800"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline-primary"
+          >
             {data.donationCtaText}
-          </button>
+          </a>
         </div>
       </div>
     </section>
