@@ -7,7 +7,11 @@ type FormData = {
   email: string;
 };
 
-export default function EmailForm() {
+interface EmailFormProps {
+  onSuccess?: () => void;
+}
+
+export default function EmailForm({ onSuccess }: EmailFormProps = {}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showButton, setShowButton] = useState(false);
@@ -46,6 +50,11 @@ export default function EmailForm() {
       // Reset the form
       reset();
       
+      // Call the success callback if provided
+      if (onSuccess) {
+        onSuccess();
+      }
+      
       // Hide the success message after 5 seconds
       setTimeout(() => {
         setIsSubmitted(false);
@@ -61,12 +70,12 @@ export default function EmailForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="">
       <div className="relative w-full">
-        <p className="text-white text-md mb-2">Enter your email address to receive updates</p>
-        <div className="flex-col">
+
+        <div className="flex-col items-center justify-center">
           <input
             type="email"
             placeholder="user@example.com"
-            className="form-input w-full rounded-sm text-white placeholder-white/50 text-base py-2"
+            className="form-input w-full rounded-full text-white placeholder-white/50 text-base font-ibm-plex-mono bg-tertiary py-3 px-4"
             {...register('email', { 
               required: 'Email is required', 
               pattern: {
@@ -79,7 +88,7 @@ export default function EmailForm() {
           {showButton && !isSubmitted && (
             <button 
               type="submit" 
-              className="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 mt-2 rounded-full transition-all"
+              className="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 mt-2 rounded-full transition-all w-full"
               disabled={isLoading}
             >
               {isLoading ? 'Sending...' : 'Submit'}
