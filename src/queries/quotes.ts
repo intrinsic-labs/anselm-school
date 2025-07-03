@@ -9,6 +9,7 @@ export const QUOTES_QUERY = defineQuery(`
     source,
     category,
     featured,
+    showInCarousel,
     authorImage {
       asset->{
         _id,
@@ -29,6 +30,7 @@ export const FEATURED_QUOTES_QUERY = defineQuery(`
     source,
     category,
     featured,
+    showInCarousel,
     authorImage {
       asset->{
         _id,
@@ -49,6 +51,7 @@ export const QUOTES_BY_CATEGORY_QUERY = defineQuery(`
     source,
     category,
     featured,
+    showInCarousel,
     authorImage {
       asset->{
         _id,
@@ -69,6 +72,7 @@ export const SINGLE_QUOTE_QUERY = defineQuery(`
     source,
     category,
     featured,
+    showInCarousel,
     authorImage {
       asset->{
         _id,

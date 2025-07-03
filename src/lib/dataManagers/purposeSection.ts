@@ -19,6 +19,7 @@ function transformQuoteReference(rawQuote?: NonNullable<PURPOSE_SECTION_QUERYRes
     source: rawQuote.source || undefined,
     category: rawQuote.category || undefined,
     featured: rawQuote.featured || false,
+    showInCarousel: rawQuote.showInCarousel || false,
     authorImage: transformImageWithPosition(rawQuote.authorImage as SanityImageWithPosition) || undefined
   }
 }

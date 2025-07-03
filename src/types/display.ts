@@ -35,6 +35,7 @@ export interface QuoteDisplay {
   source?: string        // Optional in schema
   category?: string      // Optional in schema
   featured: boolean      // Has initialValue: false
+  showInCarousel: boolean // Has initialValue: false
   authorImage?: DisplayImageWithPosition // Optional image with position
 }
 

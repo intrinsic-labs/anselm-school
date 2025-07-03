@@ -13,6 +13,7 @@ export const PURPOSE_SECTION_QUERY = defineQuery(`
       source,
       category,
       featured,
+      showInCarousel,
       authorImage {
         asset->{
           _id,

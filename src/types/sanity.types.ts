@@ -185,6 +185,7 @@ export type IdentitySection = {
   motto?: {
     primary?: string;
     sub?: string;
+    showInCarousel?: boolean;
     mottoExplanation?: Array<{
       children?: Array<{
         marks?: Array<string>;
@@ -281,6 +282,7 @@ export type Quotes = {
   };
   category?: "education" | "faith" | "classical" | "wisdom";
   featured?: boolean;
+  showInCarousel?: boolean;
 };
 
 export type HeroSection = {
@@ -565,7 +567,7 @@ export type HERO_SECTION_QUERYResult = {
 
 // Source: ./src/queries/purposeSection.ts
 // Variable: PURPOSE_SECTION_QUERY
-// Query: *[_type == "purposeSection"][0] {    titleP1,    titleP2,    content,    highlightQuote->{      _id,      title,      text,      author,      source,      category,      featured,      authorImage {        asset->{          _id,          url        },        alt,        position      }    },    backgroundImage {      asset->{        _id,        url      },      alt    }  }
+// Query: *[_type == "purposeSection"][0] {    titleP1,    titleP2,    content,    highlightQuote->{      _id,      title,      text,      author,      source,      category,      featured,      showInCarousel,      authorImage {        asset->{          _id,          url        },        alt,        position      }    },    backgroundImage {      asset->{        _id,        url      },      alt    }  }
 export type PURPOSE_SECTION_QUERYResult = {
   titleP1: string | null;
   titleP2: string | null;
@@ -595,6 +597,7 @@ export type PURPOSE_SECTION_QUERYResult = {
     source: string | null;
     category: "classical" | "education" | "faith" | "wisdom" | null;
     featured: boolean | null;
+    showInCarousel: boolean | null;
     authorImage: {
       asset: {
         _id: string;
@@ -615,7 +618,7 @@ export type PURPOSE_SECTION_QUERYResult = {
 
 // Source: ./src/queries/quotes.ts
 // Variable: QUOTES_QUERY
-// Query: *[_type == "quotes"] {    _id,    title,    text,    author,    source,    category,    featured,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
+// Query: *[_type == "quotes"] {    _id,    title,    text,    author,    source,    category,    featured,    showInCarousel,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
 export type QUOTES_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -624,6 +627,7 @@ export type QUOTES_QUERYResult = Array<{
   source: string | null;
   category: "classical" | "education" | "faith" | "wisdom" | null;
   featured: boolean | null;
+  showInCarousel: boolean | null;
   authorImage: {
     asset: {
       _id: string;
@@ -634,7 +638,7 @@ export type QUOTES_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: FEATURED_QUOTES_QUERY
-// Query: *[_type == "quotes" && featured == true] {    _id,    title,    text,    author,    source,    category,    featured,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
+// Query: *[_type == "quotes" && featured == true] {    _id,    title,    text,    author,    source,    category,    featured,    showInCarousel,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
 export type FEATURED_QUOTES_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -643,6 +647,7 @@ export type FEATURED_QUOTES_QUERYResult = Array<{
   source: string | null;
   category: "classical" | "education" | "faith" | "wisdom" | null;
   featured: boolean | null;
+  showInCarousel: boolean | null;
   authorImage: {
     asset: {
       _id: string;
@@ -653,7 +658,7 @@ export type FEATURED_QUOTES_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: QUOTES_BY_CATEGORY_QUERY
-// Query: *[_type == "quotes" && category == $category] {    _id,    title,    text,    author,    source,    category,    featured,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
+// Query: *[_type == "quotes" && category == $category] {    _id,    title,    text,    author,    source,    category,    featured,    showInCarousel,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
 export type QUOTES_BY_CATEGORY_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -662,6 +667,7 @@ export type QUOTES_BY_CATEGORY_QUERYResult = Array<{
   source: string | null;
   category: "classical" | "education" | "faith" | "wisdom" | null;
   featured: boolean | null;
+  showInCarousel: boolean | null;
   authorImage: {
     asset: {
       _id: string;
@@ -672,7 +678,7 @@ export type QUOTES_BY_CATEGORY_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: SINGLE_QUOTE_QUERY
-// Query: *[_type == "quotes" && _id == $id][0] {    _id,    title,    text,    author,    source,    category,    featured,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
+// Query: *[_type == "quotes" && _id == $id][0] {    _id,    title,    text,    author,    source,    category,    featured,    showInCarousel,    authorImage {      asset->{        _id,        url      },      alt,      position    }  }
 export type SINGLE_QUOTE_QUERYResult = {
   _id: string;
   title: string | null;
@@ -681,6 +687,7 @@ export type SINGLE_QUOTE_QUERYResult = {
   source: string | null;
   category: "classical" | "education" | "faith" | "wisdom" | null;
   featured: boolean | null;
+  showInCarousel: boolean | null;
   authorImage: {
     asset: {
       _id: string;
@@ -696,10 +703,10 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"heroSection\"][0] {\n    headline,\n    subheadline,\n    openingStatement,\n    ctaText,\n    donationCtaText,\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logomark {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logotype {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": HERO_SECTION_QUERYResult;
-    "\n  *[_type == \"purposeSection\"][0] {\n    titleP1,\n    titleP2,\n    content,\n    highlightQuote->{\n      _id,\n      title,\n      text,\n      author,\n      source,\n      category,\n      featured,\n      authorImage {\n        asset->{\n          _id,\n          url\n        },\n        alt,\n        position\n      }\n    },\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": PURPOSE_SECTION_QUERYResult;
-    "\n  *[_type == \"quotes\"] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": QUOTES_QUERYResult;
-    "\n  *[_type == \"quotes\" && featured == true] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": FEATURED_QUOTES_QUERYResult;
-    "\n  *[_type == \"quotes\" && category == $category] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": QUOTES_BY_CATEGORY_QUERYResult;
-    "\n  *[_type == \"quotes\" && _id == $id][0] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": SINGLE_QUOTE_QUERYResult;
+    "\n  *[_type == \"purposeSection\"][0] {\n    titleP1,\n    titleP2,\n    content,\n    highlightQuote->{\n      _id,\n      title,\n      text,\n      author,\n      source,\n      category,\n      featured,\n      showInCarousel,\n      authorImage {\n        asset->{\n          _id,\n          url\n        },\n        alt,\n        position\n      }\n    },\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": PURPOSE_SECTION_QUERYResult;
+    "\n  *[_type == \"quotes\"] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": QUOTES_QUERYResult;
+    "\n  *[_type == \"quotes\" && featured == true] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": FEATURED_QUOTES_QUERYResult;
+    "\n  *[_type == \"quotes\" && category == $category] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": QUOTES_BY_CATEGORY_QUERYResult;
+    "\n  *[_type == \"quotes\" && _id == $id][0] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": SINGLE_QUOTE_QUERYResult;
   }
 }

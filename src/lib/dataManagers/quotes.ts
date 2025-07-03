@@ -40,6 +40,7 @@ export async function getQuotes(): Promise<QuoteDisplay[] | null> {
       source: quote.source || undefined,
       category: quote.category || undefined,
       featured: quote.featured || false,
+      showInCarousel: quote.showInCarousel || false,
       authorImage: transformImageWithPosition(quote.authorImage as SanityImageWithPosition) || undefined
     }))
   } catch (error) {
@@ -73,6 +74,7 @@ export async function getFeaturedQuotes(): Promise<QuoteDisplay[]> {
       source: quote.source || undefined,
       category: quote.category || undefined,
       featured: quote.featured || false,
+      showInCarousel: quote.showInCarousel || false,
       authorImage: transformImageWithPosition(quote.authorImage as SanityImageWithPosition) || undefined
     }))
   } catch (error) {
@@ -106,6 +108,7 @@ export async function getQuotesByCategory(category: string): Promise<QuoteDispla
       source: quote.source || undefined,
       category: quote.category || undefined,
       featured: quote.featured || false,
+      showInCarousel: quote.showInCarousel || false,
       authorImage: transformImageWithPosition(quote.authorImage as SanityImageWithPosition) || undefined
     }))
   } catch (error) {
@@ -139,6 +142,7 @@ export async function getQuoteById(id: string): Promise<QuoteDisplay | null> {
       source: rawData.source || undefined,
       category: rawData.category || undefined,
       featured: rawData.featured || false,
+      showInCarousel: rawData.showInCarousel || false,
       authorImage: transformImageWithPosition(rawData.authorImage as SanityImageWithPosition) || undefined
     }
   } catch (error) {
