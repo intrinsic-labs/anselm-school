@@ -92,3 +92,15 @@ small {
   @apply leading-normal;
 }
 
+.debug {
+  @apply border-1 border-red-500;
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-secondary hover:bg-white hover:text-gray-900 text-white px-8 py-3 rounded-full font-ibm-plex-mono transition-colors duration-300;
+  }
+  .btn-outline-primary {
+    @apply bg-transparent border-1 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full font-ibm-plex-mono transition-colors duration-300;
+  }
+}

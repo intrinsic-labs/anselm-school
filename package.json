@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
+    "dev": "npm run typegen && next dev --turbopack",
+    "build": "npm run typegen && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typegen": "cd ../cms && npx sanity schema extract --path=schema.json && cd ../frontend && npx sanity typegen generate"
   },
   "dependencies": {
+    "@portabletext/react": "^3.2.1",
+    "@portabletext/types": "^2.0.13",
+    "@sanity/client": "^7.6.0",
+    "@sanity/image-url": "^1.1.0",
     "framer-motion": "^12.18.1",
+    "groq": "^3.95.0",
     "next": "15.3.4",
+    "next-sanity": "^9.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.58.1"

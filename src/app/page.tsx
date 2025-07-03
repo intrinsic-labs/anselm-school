@@ -1,92 +1,51 @@
+import { getHeroSection, getPurposeSection } from '../lib/dataManager'
+import { Hero } from '../components/Hero'
+import Quote from '../components/Quote'
+import PurposeSection from '../components/PurposeSection'
 import Image from 'next/image';
-import EmailForm from '@/components/emailForm';
 import Link from 'next/link';
 
-export default function Home() {
+// Ensure this page is statically generated at build time
+export const revalidate = false
+
+export default async function Home() {
+  const heroData = await getHeroSection()
+  // const featuredQuotes = await getFeaturedQuotes()
+  const purposeData = await getPurposeSection()
+  
+  if (!heroData) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Hero section not found</p>
+      </div>
+    )
+  }
+
   return (
     <main className="min-h-screen flex flex-col">
-      {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Landscape background"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/20"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <div className="mb-2">
-            <div className="flex flex-col items-center justify-center gap-0 relative">
-              <Image
-                src="/images/logo/Anselm School_logos-02.svg"
-                alt="The Anselm School Logo"
-                width={220}
-                height={220}
-                className="mx-auto relative z-10 w-[140px] h-[140px] md:w-[220px] md:h-[220px]"
-              />
-              <Image
-                src="/images/logo/Anselm School_logos-07.svg"
-                alt="The Anselm School Logo"
-                width={350}
-                height={350}
-                className="mx-auto -mt-8 w-[220px] h-[220px] md:w-[350px] md:h-[350px]"
-              />
-            </div>
-          </div>
-          
-          <div className="w-xl">
-            <p className="text-2xl md:text-4xl text-white italic mb-8 -mt-10">Opening Fall 2026</p>
-
-            {/* <p className="text-xl md:text-2xl text-white uppercase mb-4">Interest Meeting: May 29</p> */}
-            
-            <div className="bg-white/10 backdrop-blur-sm p-2 border border-white/30 transition-all">
-              <EmailForm />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero data={heroData} />
       
-      {/* Quote Section */}
-      <section className="bg-tertiary text-white py-16 px-4 relative overflow-hidden">
-        {/* Desktop positioned image - hidden on mobile */}
-        <div className="absolute hidden md:block left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 lg:right-[calc(50%-700px)] top-1/3 -translate-y-1/2 md:translate-y-0 md:top-0 z-0 mix-blend-overlay">
-          <Image
-            src="/images/lewiswriting.png"
-            alt="C.S. Lewis writing"
-            width={600}
-            height={600}
-            className="opacity-35 md:opacity-45"
-          />
-        </div>
-        
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="flex flex-col md:flex-row justify-center items-center">
-            {/* Mobile image - only visible on small screens */}
-            <div className="block md:hidden w-full mb-4">
-              <Image
-                src="/images/lewiswriting.png"
-                alt="C.S. Lewis writing"
-                width={300}
-                height={300}
-                className="mx-auto opacity-45 mix-blend-overlay"
-              />
-            </div>
-            
-            {/* Quote content */}
-            <div className="w-full md:w-2/3 text-center">
-              <blockquote className="text-xl md:text-2xl italic mb-4 mt-0">
-                &quot;The task of the modern educator is not to cut down jungles but to irrigate deserts.
-                The right defense against false sentiments is to inculcate just sentiments.&quot;
-              </blockquote>
-              <div className="font-ibm-plex-mono text-md">-C.S. Lewis, <span className="italic">The Abolition of Man</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Quote Section - Dynamic from Sanity */}
+      {/* {featuredQuotes && featuredQuotes.length > 0 && (
+        <section>
+          {featuredQuotes.slice(0, 1).map((quote) => (
+            <Quote key={quote.id} quote={quote} />
+          ))}
+        </section>
+      )} */}
+    
+
+      {/* Purpose Section - Dynamic from Sanity */}
+      {purposeData && (
+        <PurposeSection data={purposeData} />
+      )}
+
+      {/* Purpose Section Highlight Quote - Dynamic from Sanity */}
+      {purposeData?.highlightQuote && (
+        <section>
+          <Quote quote={purposeData.highlightQuote} />
+        </section>
+      )}
       
       {/* Description Section */}
       <section className="relative py-16 px-4 overflow-hidden">
