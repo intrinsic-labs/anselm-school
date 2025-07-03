@@ -123,6 +123,7 @@ export interface HeroSectionDisplay {
 
 3. **Create Data Manager Function**: `frontend/src/lib/dataManager.ts`
    - Fetch + transform pattern
+   - Use QUERY_NAME_QUERYResult type for raw data. DO NOT create additional types or interfaces for raw data. The generated result is already safe to use.
    - Handle null → undefined conversion
    - Type assertions for complex objects
    - Environment-aware logging
@@ -191,7 +192,7 @@ backgroundImage: transformImage(rawData.backgroundImage as SanityImage) || undef
 For each new section (Purpose, Identity, Anselm, etc.):
 
 1. **Query**: Create `frontend/src/queries/[section].ts`
-2. **Display Type**: Add interface to `frontend/src/types/display.ts`  
+2. **Display Type**: Add display interface to `frontend/src/types/display.ts`  
 3. **Data Manager**: Add function to `frontend/src/lib/dataManager.ts`
 4. **Component**: Create `frontend/src/components/[Section].tsx`
 5. **Integration**: Add to page with `btn-primary`/`btn-outline-primary` styling

@@ -1,7 +1,10 @@
-import { getHeroSection, getPurposeSection } from '../lib/dataManager'
+import { getHeroSection, getPurposeSection, getIdentitySection, getAnselmSection } from '../lib/dataManager'
 import { Hero } from '../components/Hero'
 import Quote from '../components/Quote'
 import PurposeSection from '../components/PurposeSection'
+import IdentitySection from '../components/IdentitySection'
+import IdentityMotto from '../components/IdentityMotto'
+import AnselmSection from '../components/AnselmSection'
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -12,6 +15,8 @@ export default async function Home() {
   const heroData = await getHeroSection()
   // const featuredQuotes = await getFeaturedQuotes()
   const purposeData = await getPurposeSection()
+  const identityData = await getIdentitySection()
+  const anselmData = await getAnselmSection()
   
   if (!heroData) {
     return (
@@ -41,41 +46,29 @@ export default async function Home() {
       )}
 
       {/* Purpose Section Highlight Quote - Dynamic from Sanity */}
-      {purposeData?.highlightQuote && (
+      {/* {purposeData?.highlightQuote && (
         <section>
           <Quote quote={purposeData.highlightQuote} />
         </section>
+      )} */}
+
+      {/* Identity Section - Full Version - Dynamic from Sanity */}
+      {identityData && (
+        <IdentitySection data={identityData} />
+      )}
+
+      {/* Identity Motto - Standalone Version - Dynamic from Sanity */}
+      {/* {identityData?.motto && (
+        <IdentityMotto data={identityData.motto} />
+      )} */}
+
+      {/* Anselm Section - Dynamic from Sanity */}
+      {anselmData && (
+        <AnselmSection anselmSection={anselmData} />
       )}
       
-      {/* Description Section */}
-      <section className="relative py-16 px-4 overflow-hidden">
-        <div className="absolute inset-0 z-0 scale-[1.1]">
-          <Image
-            src="/images/hero-bg.jpg"
-            alt="Landscape background"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-2xl mx-auto text-center">
-          <p className="text-xl md:text-2xl mb-12 text-white">
-            The Anselm School is a classical Christian school opening in Charlotte, NC in 2026. 
-            Our aim is to train the hearts and minds of students to be lovers of wisdom, knowledge, and virtue.
-          </p>
-          
-          {/* <div className="flex flex-col md:flex-row justify-center gap-6 mb-12">
-            <a href="#" className="btn btn-filled">Give Today</a>
-            <a href="#" className="btn btn-outline">Get Updates</a>
-          </div> */}
-          
-          <p className="text-xl italic text-white">Full website coming soon.</p>
-        </div>
-      </section>
-      
       {/* Footer */}
-      <footer className="py-12 px-4 bg-primary text-white text-center w-full mx-auto opacity-50">
+      <footer className="py-12 px-4 bg-tertiary text-white text-center w-full mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-6">
           <Image
             src="/images/logo/Anselm School_logos-07.svg"

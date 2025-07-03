@@ -145,7 +145,8 @@ export type IdentitySection = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
+  titleP1?: string;
+  titleP2?: string;
   distinctives?: Array<{
     title?: string;
     shortDescription?: string;
@@ -177,6 +178,7 @@ export type IdentitySection = {
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
+      alt?: string;
       _type: "image";
     };
     _type: "distinctive";
@@ -565,6 +567,68 @@ export type HERO_SECTION_QUERYResult = {
   } | null;
 } | null;
 
+// Source: ./src/queries/identitySection.ts
+// Variable: IDENTITY_SECTION_QUERY
+// Query: *[_type == "identitySection"][0] {    titleP1,    titleP2,    distinctives[] {      title,      shortDescription,      content,      icon {        asset->{          _id,          url        },        alt      }    },    motto {      primary,      sub,      showInCarousel,      mottoExplanation    },    ctaText,    ctaLink  }
+export type IDENTITY_SECTION_QUERYResult = {
+  titleP1: string | null;
+  titleP2: string | null;
+  distinctives: Array<{
+    title: string | null;
+    shortDescription: string | null;
+    content: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "h3" | "h4" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+    icon: {
+      asset: {
+        _id: string;
+        url: string | null;
+      } | null;
+      alt: string | null;
+    } | null;
+  }> | null;
+  motto: {
+    primary: string | null;
+    sub: string | null;
+    showInCarousel: boolean | null;
+    mottoExplanation: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }> | null;
+  } | null;
+  ctaText: string | null;
+  ctaLink: string | null;
+} | null;
+
 // Source: ./src/queries/purposeSection.ts
 // Variable: PURPOSE_SECTION_QUERY
 // Query: *[_type == "purposeSection"][0] {    titleP1,    titleP2,    content,    highlightQuote->{      _id,      title,      text,      author,      source,      category,      featured,      showInCarousel,      authorImage {        asset->{          _id,          url        },        alt,        position      }    },    backgroundImage {      asset->{        _id,        url      },      alt    }  }
@@ -703,6 +767,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"heroSection\"][0] {\n    headline,\n    subheadline,\n    openingStatement,\n    ctaText,\n    donationCtaText,\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logomark {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logotype {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": HERO_SECTION_QUERYResult;
+    "\n  *[_type == \"identitySection\"][0] {\n    titleP1,\n    titleP2,\n    distinctives[] {\n      title,\n      shortDescription,\n      content,\n      icon {\n        asset->{\n          _id,\n          url\n        },\n        alt\n      }\n    },\n    motto {\n      primary,\n      sub,\n      showInCarousel,\n      mottoExplanation\n    },\n    ctaText,\n    ctaLink\n  }\n": IDENTITY_SECTION_QUERYResult;
     "\n  *[_type == \"purposeSection\"][0] {\n    titleP1,\n    titleP2,\n    content,\n    highlightQuote->{\n      _id,\n      title,\n      text,\n      author,\n      source,\n      category,\n      featured,\n      showInCarousel,\n      authorImage {\n        asset->{\n          _id,\n          url\n        },\n        alt,\n        position\n      }\n    },\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": PURPOSE_SECTION_QUERYResult;
     "\n  *[_type == \"quotes\"] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": QUOTES_QUERYResult;
     "\n  *[_type == \"quotes\" && featured == true] {\n    _id,\n    title,\n    text,\n    author,\n    source,\n    category,\n    featured,\n    showInCarousel,\n    authorImage {\n      asset->{\n        _id,\n        url\n      },\n      alt,\n      position\n    }\n  }\n": FEATURED_QUOTES_QUERYResult;

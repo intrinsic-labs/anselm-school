@@ -1,5 +1,5 @@
-import { PortableText } from '@portabletext/react'
 import { PurposeSectionDisplay } from '../types/display'
+import PortableTextRenderer from './PortableTextRenderer'
 
 interface PurposeSectionProps {
   data: PurposeSectionDisplay
@@ -32,25 +32,11 @@ export default function PurposeSection({ data }: PurposeSectionProps) {
         )}
         
         {/* Content */}
-        <div className="text-white prose prose-lg prose-invert max-w-none">
-          <PortableText 
-            value={content}
-            components={{
-              block: {
-                normal: ({ children }) => <p className="leading-relaxed mb-6">{children}</p>,
-                h2: ({ children }) => <h2 className="text-white mb-4">{children}</h2>,
-                h3: ({ children }) => <h3 className="text-white mb-4">{children}</h3>,
-                
-                blockquote: ({ children }) => <blockquote className="italic border-l-4 border-secondary pl-6 my-6">{children}</blockquote>
-              },
-              marks: {
-                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-                em: ({ children }) => <em className="italic border-b-2 border-secondary">{children}</em>,
-                underline: ({ children }) => <span className="underline">{children}</span>
-              }
-            }}
-          />
-        </div>
+        <PortableTextRenderer 
+          value={content}
+          variant="large"
+          textColor="white"
+        />
       </div>
     </div>
   )
