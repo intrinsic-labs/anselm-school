@@ -38,6 +38,11 @@ export default async function Home() {
           ))}
         </section>
       )} */}
+
+      {/* Identity Section - Full Version - Dynamic from Sanity */}
+      {identityData && (
+        <IdentitySection data={identityData} />
+      )}
     
 
       {/* Purpose Section - Dynamic from Sanity */}
@@ -46,16 +51,12 @@ export default async function Home() {
       )}
 
       {/* Purpose Section Highlight Quote - Dynamic from Sanity */}
-      {/* {purposeData?.highlightQuote && (
+      {purposeData?.highlightQuote && (
         <section>
           <Quote quote={purposeData.highlightQuote} />
         </section>
-      )} */}
-
-      {/* Identity Section - Full Version - Dynamic from Sanity */}
-      {identityData && (
-        <IdentitySection data={identityData} />
       )}
+
 
       {/* Identity Motto - Standalone Version - Dynamic from Sanity */}
       {/* {identityData?.motto && (
