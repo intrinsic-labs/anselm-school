@@ -11,6 +11,7 @@ export default function PurposeSection({ data }: PurposeSectionProps) {
   return (
     <div 
       className="relative min-h-[50vh] flex items-center justify-center px-8 py-16"
+      id="purpose"
       style={backgroundImage ? {
         backgroundImage: `url(${backgroundImage.url})`,
         backgroundSize: 'cover',

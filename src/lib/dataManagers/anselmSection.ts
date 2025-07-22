@@ -3,6 +3,7 @@ import { transformImage, SanityImage } from '../dataTransforms'
 import { AnselmSectionDisplay } from '../../types/display'
 import { ANSELM_SECTION_QUERY } from '../../queries/anselmSection'
 import { ANSELM_SECTION_QUERYResult } from '@/types/sanity.types'
+import { PortableTextBlock } from '@portabletext/types'
 
 /**
  * Fetch and transform Anselm section data for display
@@ -26,7 +27,7 @@ export async function getAnselmSection(): Promise<AnselmSectionDisplay | null> {
       id: rawData._id,
       title: rawData.title || '',
       lifespan: rawData.lifespan || '',
-      description: rawData.description || [],
+      description: rawData.description as PortableTextBlock[] || [],
       quote: {
         text: rawData.quote?.text || '',
         source: rawData.quote?.source || ''

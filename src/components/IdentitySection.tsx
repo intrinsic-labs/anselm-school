@@ -18,7 +18,7 @@ export default function IdentitySection({ data }: IdentitySectionProps) {
   return (
     <>
       {/* First Section: Title and Distinctives */}
-      <div className="relative min-h-[50vh] flex items-center justify-center px-8 py-16 bg-light-gray">
+      <div className="relative min-h-[50vh] flex items-center justify-center px-8 py-16 bg-light-gray" id="identity">
         {/* Overlay for better text readability */}
         {/* <div className="absolute inset-0 bg-tertiary/80" /> */}
         
@@ -34,7 +34,7 @@ export default function IdentitySection({ data }: IdentitySectionProps) {
           
           {/* Distinctives Accordion */}
           {distinctives.length > 0 && (
-            <div className="w-[600px] mx-auto mb-12">
+            <div className="w-full max-w-2xl mx-auto mb-12 px-4">
               {distinctives.map((distinctive, index) => (
                 <div key={index} className="mb-6 w-full text-center">
                   {/* Clickable Title */}
@@ -44,8 +44,8 @@ export default function IdentitySection({ data }: IdentitySectionProps) {
                   >
                     <h3 className={`font-normal group-hover:text-primary transition-colors duration-200 ${expandedIndex === index ? 'text-primary' : 'text-white'}`}>
                       {distinctive.title}
-                      <span className="ml-4 text-secondary transition-colors duration-200">
-                        {expandedIndex === index ? '←' : '→'}
+                      <span className="ml-4 font-ibm-plex-mono text-xl transition-colors duration-200">
+                        {expandedIndex === index ? '<' : '>'}
                       </span>
                     </h3>
                   </button>

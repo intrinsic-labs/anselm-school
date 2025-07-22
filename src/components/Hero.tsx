@@ -5,6 +5,7 @@ import { HeroSectionDisplay } from '../types/display'
 import Image from 'next/image'
 import Modal from './Modal' 
 import EmailForm from './emailForm'
+import { links } from '../lib/links'
 
 interface HeroProps {
   data: HeroSectionDisplay
@@ -40,7 +41,7 @@ export function Hero({ data }: HeroProps) {
       <div className="absolute inset-0 bg-black/20" />
       
       {/* Content */}
-      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 mt-8 md:mt-0">
         {/* Logo */}
         {data.logomark && (
           <div className="-mb-12">
@@ -54,7 +55,7 @@ export function Hero({ data }: HeroProps) {
           </div>
         )}
         {data.logotype && (
-          <div className="">
+          <div className="md:mb-0">
             <Image 
               src={data.logotype.url} 
               alt={data.logotype.alt}
@@ -85,7 +86,7 @@ export function Hero({ data }: HeroProps) {
         )} */}
         
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
 
           {/* This is the email signup button */}
           <button className="btn-primary" onClick={handleOpenModal}>
@@ -94,7 +95,7 @@ export function Hero({ data }: HeroProps) {
 
 
           <a
-            href="https://donate.stripe.com/eVqaEW1H2gMB4aI4EC4c800"
+            href={links.donate}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline-primary"

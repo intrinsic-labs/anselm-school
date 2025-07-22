@@ -3,10 +3,9 @@ import { Hero } from '../components/Hero'
 import Quote from '../components/Quote'
 import PurposeSection from '../components/PurposeSection'
 import IdentitySection from '../components/IdentitySection'
-import IdentityMotto from '../components/IdentityMotto'
+// import IdentityMotto from '../components/IdentityMotto'
 import AnselmSection from '../components/AnselmSection'
-import Image from 'next/image';
-import Link from 'next/link';
+import Footer from '../components/Footer'
 
 // Ensure this page is statically generated at build time
 export const revalidate = false
@@ -69,18 +68,7 @@ export default async function Home() {
       )}
       
       {/* Footer */}
-      <footer className="py-12 px-4 bg-tertiary text-white text-center w-full mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-0 md:gap-6">
-          <Image
-            src="/images/logo/Anselm School_logos-07.svg"
-            alt="The Anselm School Logo"
-            width={130}
-            height={130}
-            className="mx-auto md:mx-0"
-          />
-          <p className="text-md">© The Anselm School. All Rights Reserved. Website by <Link href="https://intrinsiclabs.co" target="_blank" rel="noopener noreferrer" className="text-white hover:underline">Intrinsic Labs LLC.</Link></p>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 } 

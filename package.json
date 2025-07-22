@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm run typegen && next dev --turbopack",
-    "build": "npm run typegen && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typegen": "cd ../cms && npx sanity schema extract --path=schema.json && cd ../frontend && npx sanity typegen generate"

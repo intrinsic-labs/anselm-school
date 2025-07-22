@@ -15,6 +15,7 @@ export default function EmailForm({ onSuccess }: EmailFormProps = {}) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors }, watch, reset } = useForm<FormData>();
   
   // Watch the email field to determine when to show the submit button
@@ -27,6 +28,7 @@ export default function EmailForm({ onSuccess }: EmailFormProps = {}) {
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true);
+    setError(null); // Clear any previous errors
     
     try {
       // Send the email to our API route
@@ -41,27 +43,27 @@ export default function EmailForm({ onSuccess }: EmailFormProps = {}) {
       const result = await response.json();
       
       if (!response.ok) {
-        throw new Error(result.error || 'Failed to subscribe');
+        throw new Error(result.error || `HTTP ${response.status}: ${response.statusText}`);
       }
       
       // Show success message
       setIsSubmitted(true);
       
-      // Reset the form
-      reset();
-      
-      // Call the success callback if provided
-      if (onSuccess) {
-        onSuccess();
-      }
-      
-      // Hide the success message after 5 seconds
+      // Wait 2 seconds before resetting the form to show success message
       setTimeout(() => {
+        reset();
         setIsSubmitted(false);
-      }, 5000);
+        
+        // Call the success callback after showing success message
+        if (onSuccess) {
+          onSuccess();
+        }
+      }, 2000);
+      
     } catch (error) {
       console.error('Subscription error:', error);
-      alert('Failed to subscribe. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      setError(`That didn't work. Error: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
@@ -96,10 +98,13 @@ export default function EmailForm({ onSuccess }: EmailFormProps = {}) {
           )}
         </div>
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          <p className="text-red-500 text-sm mt-2">{errors.email.message}</p>
+        )}
+        {error && (
+          <p className="text-red-500 text-sm mt-2">{error}</p>
         )}
         {isSubmitted && (
-          <p className="text-secondary text-md mt-1">Thank you for subscribing!</p>
+          <p className="text-secondary text-md mt-2">Thank you for subscribing!</p>
         )}
       </div>
     </form>
