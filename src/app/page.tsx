@@ -7,8 +7,8 @@ import IdentitySection from '../components/IdentitySection'
 import AnselmSection from '../components/AnselmSection'
 import Footer from '../components/Footer'
 
-// Ensure this page is statically generated at build time
-export const revalidate = false
+// Revalidate content every hour (3600 seconds)
+export const revalidate = 3600
 
 export default async function Home() {
   const heroData = await getHeroSection()
