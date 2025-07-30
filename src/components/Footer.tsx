@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { links } from '../lib/links'
+import GetUpdatesButton from './GetUpdatesButton'
 
 export default function Footer() {
   return (
@@ -36,14 +37,9 @@ export default function Footer() {
                   egreb@anselmschool.org
                 </Link>
               </div>
-              {/* <div className="pt-4">
-                <Link
-                  href="#"
-                  className="btn-primary inline-block text-center"
-                >
-                  Get Updates
-                </Link>
-              </div> */}
+              <div className="pt-4">
+                <GetUpdatesButton />
+              </div>
             </div>
           </div>
 

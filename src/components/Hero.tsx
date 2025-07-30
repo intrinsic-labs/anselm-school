@@ -1,10 +1,8 @@
 "use client";
 
-import { useState } from 'react'
 import { HeroSectionDisplay } from '../types/display'
 import Image from 'next/image'
-import Modal from './Modal' 
-import EmailForm from './emailForm'
+import GetUpdatesButton from './GetUpdatesButton'
 import { links } from '../lib/links'
 
 interface HeroProps {
@@ -12,20 +10,6 @@ interface HeroProps {
 }
 
 export function Hero({ data }: HeroProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleEmailSuccess = () => {
-    // Close modal on successful email submission
-    setIsModalOpen(false);
-  };
 
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center">
@@ -89,9 +73,9 @@ export function Hero({ data }: HeroProps) {
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
 
           {/* This is the email signup button */}
-          <button className="btn-primary" onClick={handleOpenModal}>
+          <GetUpdatesButton>
             {data.ctaText}
-          </button>
+          </GetUpdatesButton>
 
 
           <a
@@ -105,19 +89,7 @@ export function Hero({ data }: HeroProps) {
         </div>
       </div>
 
-      {/* Email Signup Modal */}
-      <Modal 
-        isOpen={isModalOpen} 
-        onClose={handleCloseModal}
-        title="Stay Updated"
-      >
-        <div className="space-y-4">
-          <p className="text-white/90">
-            Join our mailing list to receive updates about The Anselm School.
-          </p>
-          <EmailForm onSuccess={handleEmailSuccess} />
-        </div>
-      </Modal>
+
     </section>
   )
 } 
