@@ -49,8 +49,7 @@ export default function Quote({ quote }: QuoteProps) {
 
   return (
     <div 
-      className="relative min-h-[50vh] flex items-center justify-center px-8 py-16"
-      style={{ backgroundColor: 'var(--light-gray)' }}
+      className="relative min-h-[50vh] flex items-center justify-center px-8 py-16 bg-tertiary"
     >
       {/* Author image as background */}
       {authorImage && (

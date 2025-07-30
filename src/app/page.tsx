@@ -43,16 +43,16 @@ export default async function Home() {
         <PurposeSection data={purposeData} />
       )}
 
-      {/* Identity Section - Full Version - Dynamic from Sanity */}
-      {identityData && (
-        <IdentitySection data={identityData} />
-      )}
-
       {/* Purpose Section Highlight Quote - Dynamic from Sanity */}
       {purposeData?.highlightQuote && (
         <section>
           <Quote quote={purposeData.highlightQuote} />
         </section>
+      )}
+
+      {/* Identity Section - Full Version - Dynamic from Sanity */}
+      {identityData && (
+        <IdentitySection data={identityData} />
       )}
 
 
