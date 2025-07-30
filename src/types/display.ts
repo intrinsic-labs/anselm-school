@@ -52,6 +52,17 @@ export interface PurposeSectionDisplay {
 }
 
 /**
+ * Display-ready lasting section data
+ * Clean interface focused on what the UI actually needs
+ */
+export interface LastingSectionDisplay {
+  titleP1?: string          // Optional in schema
+  titleP2?: string          // Optional in schema
+  content: PortableTextBlock[] // Rich text content from Sanity
+  backgroundImage?: DisplayImage // Optional background image
+}
+
+/**
  * Display-ready distinctive data for identity section
  */
 export interface DistinctiveDisplay {

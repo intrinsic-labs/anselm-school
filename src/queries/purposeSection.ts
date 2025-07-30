@@ -28,6 +28,8 @@ export const PURPOSE_SECTION_QUERY = defineQuery(`
         _id,
         url
       },
+      hotspot,
+      crop,
       alt
     }
   }

@@ -1,18 +1,18 @@
 import Image from 'next/image'
-import { PurposeSectionDisplay } from '../types/display'
+import { LastingSectionDisplay } from '../types/display'
 import { getObjectPosition } from '../lib/dataTransforms'
 import PortableTextRenderer from './PortableTextRenderer'
 
-interface PurposeSectionProps {
-  data: PurposeSectionDisplay
+interface LastingSectionProps {
+  data: LastingSectionDisplay
 }
 
-export default function PurposeSection({ data }: PurposeSectionProps) {
+export default function LastingSection({ data }: LastingSectionProps) {
   const { titleP1, titleP2, content, backgroundImage } = data
 
   return (
     <div 
-      className="relative min-h-[50vh] flex items-center justify-center px-8 py-16"
+      className="relative min-h-[50vh] flex items-center justify-center px-8 py-16 "
       id="purpose"
       style={!backgroundImage ? { backgroundColor: 'var(--tertiary)' } : undefined}
     >
@@ -31,7 +31,7 @@ export default function PurposeSection({ data }: PurposeSectionProps) {
       )}
       
       {/* Overlay for better text readability */}
-      <div className="absolute inset-0 bg-tertiary/80" />
+      <div className="absolute inset-0 bg-primary/70" />
       
       <div className="relative z-10 max-w-2xl mx-auto text-center">
         {/* Section Title */}

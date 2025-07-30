@@ -5,6 +5,8 @@ import PurposeSection from '../components/PurposeSection'
 import IdentitySection from '../components/IdentitySection'
 // import IdentityMotto from '../components/IdentityMotto'
 import AnselmSection from '../components/AnselmSection'
+import LastingSection from '../components/LastingSection'
+import { getLastingSection } from '../lib/dataManager'
 import Footer from '../components/Footer'
 
 // Revalidate content every hour (3600 seconds)
@@ -16,7 +18,8 @@ export default async function Home() {
   const purposeData = await getPurposeSection()
   const identityData = await getIdentitySection()
   const anselmData = await getAnselmSection()
-  
+  const lastingData = await getLastingSection()
+
   if (!heroData) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -64,6 +67,11 @@ export default async function Home() {
       {/* Anselm Section - Dynamic from Sanity */}
       {anselmData && (
         <AnselmSection anselmSection={anselmData} />
+      )}
+
+      {/* Lasting Section - Dynamic from Sanity */}
+      {lastingData && (
+        <LastingSection data={lastingData} />
       )}
       
       {/* Footer */}

@@ -1,14 +1,33 @@
 import { urlFor } from './sanity'
 
-// Helper type for Sanity image references
+// Helper types for Sanity image references
 export interface SanityImageAsset {
   _id: string
   url: string
 }
 
+// Sanity hotspot and crop types
+export interface SanityImageHotspot {
+  _type: 'sanity.imageHotspot'
+  x: number
+  y: number
+  height: number
+  width: number
+}
+
+export interface SanityImageCrop {
+  _type: 'sanity.imageCrop'
+  top: number
+  bottom: number
+  left: number
+  right: number
+}
+
 export interface SanityImage {
   asset?: SanityImageAsset
   alt?: string
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
 }
 
 export interface SanityImageWithPosition extends SanityImage {
@@ -19,6 +38,8 @@ export interface SanityImageWithPosition extends SanityImage {
 export interface DisplayImage {
   url: string
   alt: string
+  hotspot?: SanityImageHotspot
+  crop?: SanityImageCrop
 }
 
 export interface DisplayImageWithPosition extends DisplayImage {
@@ -33,7 +54,9 @@ export function transformImage(sanityImage?: SanityImage): DisplayImage | null {
   
   return {
     url: urlFor(sanityImage).url(),
-    alt: sanityImage.alt || ''
+    alt: sanityImage.alt || '',
+    hotspot: sanityImage.hotspot,
+    crop: sanityImage.crop
   }
 }
 
@@ -46,7 +69,9 @@ export function transformImageWithPosition(sanityImage?: SanityImageWithPosition
   return {
     url: urlFor(sanityImage).url(),
     alt: sanityImage.alt || '',
-    position: sanityImage.position || 'center'
+    position: sanityImage.position || 'center',
+    hotspot: sanityImage.hotspot,
+    crop: sanityImage.crop
   }
 }
 
@@ -68,6 +93,22 @@ export function transformImageWithOptions(
   
   return {
     url: builder.url(),
-    alt: sanityImage.alt || ''
+    alt: sanityImage.alt || '',
+    hotspot: sanityImage.hotspot,
+    crop: sanityImage.crop
   }
+}
+
+/**
+ * Calculate object-position CSS value from Sanity hotspot data
+ * Hotspot coordinates are normalized (0-1) with origin at top-left
+ */
+export function getObjectPosition(hotspot?: SanityImageHotspot): string {
+  if (!hotspot) return 'center'
+  
+  // Convert normalized coordinates to percentages
+  const x = Math.round(hotspot.x * 100)
+  const y = Math.round(hotspot.y * 100)
+  
+  return `${x}% ${y}%`
 } 

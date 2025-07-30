@@ -11,6 +11,11 @@ import { getPurposeSection } from './dataManagers/purposeSection'
 // Re-export purpose section data manager
 export { getPurposeSection } 
 
+// Import lasting section data manager
+import { getLastingSection } from './dataManagers/lastingSection'
+// Re-export lasting section data manager
+export { getLastingSection }
+
 // Import hero section data manager
 import { getHeroSection } from './dataManagers/heroSection'
 // Re-export hero section data manager

@@ -69,7 +69,7 @@ export default function Quote({ quote }: QuoteProps) {
         </div>
       )}
       
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-2xl mx-auto text-center">
         {/* Decorative line */}
         <div className="w-28 h-1 bg-secondary mx-auto mb-8" />
         
