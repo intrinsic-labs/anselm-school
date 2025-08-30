@@ -81,6 +81,77 @@ export type Person = {
   };
 };
 
+export type GivingSection = {
+  _id: string;
+  _type: "givingSection";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  heading?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h3" | "h4";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  impact?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h3" | "h4";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  backgroundImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  highlightImage?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
 export type LastingSection = {
   _id: string;
   _type: "lastingSection";
@@ -561,7 +632,7 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = Person | LastingSection | AnselmSection | IdentitySection | PurposeSection | Quotes | HeroSection | SiteSettings | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Person | GivingSection | LastingSection | AnselmSection | IdentitySection | PurposeSection | Quotes | HeroSection | SiteSettings | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/queries/anselmSection.ts
 // Variable: ANSELM_SECTION_QUERY
@@ -593,6 +664,64 @@ export type ANSELM_SECTION_QUERYResult = {
     source: string | null;
   } | null;
   portrait: {
+    asset: {
+      _id: string;
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+} | null;
+
+// Source: ./src/queries/givingSection.ts
+// Variable: GIVING_SECTION_QUERY
+// Query: *[_type == "givingSection"][0] {    _id,    title,    heading,    impact,    backgroundImage {      asset->{        _id,        url      },      alt    },    highlightImage {      asset->{        _id,        url      },      alt    }  }
+export type GIVING_SECTION_QUERYResult = {
+  _id: string;
+  title: string | null;
+  heading: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h3" | "h4" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  impact: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h3" | "h4" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }> | null;
+  backgroundImage: {
+    asset: {
+      _id: string;
+      url: string | null;
+    } | null;
+    alt: string | null;
+  } | null;
+  highlightImage: {
     asset: {
       _id: string;
       url: string | null;
@@ -870,6 +999,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"anselmSection\"][0] {\n    _id,\n    title,\n    lifespan,\n    description,\n    quote {\n      text,\n      source\n    },\n    portrait {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": ANSELM_SECTION_QUERYResult;
+    "\n  *[_type == \"givingSection\"][0] {\n    _id,\n    title,\n    heading,\n    impact,\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    highlightImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": GIVING_SECTION_QUERYResult;
     "\n  *[_type == \"heroSection\"][0] {\n    headline,\n    subheadline,\n    openingStatement,\n    ctaText,\n    donationCtaText,\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logomark {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    },\n    logotype {\n      asset->{\n        _id,\n        url\n      },\n      alt\n    }\n  }\n": HERO_SECTION_QUERYResult;
     "\n  *[_type == \"identitySection\"][0] {\n    titleP1,\n    titleP2,\n    distinctives[] {\n      title,\n      shortDescription,\n      content,\n      icon {\n        asset->{\n          _id,\n          url\n        },\n        alt\n      }\n    },\n    motto {\n      primary,\n      sub,\n      showInCarousel,\n      mottoExplanation\n    },\n    ctaText,\n    ctaLink\n  }\n": IDENTITY_SECTION_QUERYResult;
     "\n  *[_type == \"lastingSection\"][0] {\n    titleP1,\n    titleP2,\n    content,\n    backgroundImage {\n      asset->{\n        _id,\n        url\n      },\n      hotspot,\n      crop,\n      alt\n    }\n  }\n": LASTING_SECTION_QUERYResult;

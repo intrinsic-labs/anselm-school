@@ -110,3 +110,16 @@ export interface AnselmSectionDisplay {
   }
   portrait?: DisplayImage      // Optional portrait image
 } 
+
+/**
+ * Display-ready giving section data
+ * Clean interface focused on what the UI actually needs
+ */
+export interface GivingSectionDisplay {
+  id: string                    // For React keys and references
+  title: string                 // Has initialValue: 'Giving'
+  heading: PortableTextBlock[] // Rich text content from Sanity
+  impact: PortableTextBlock[] // Rich text content from Sanity
+  backgroundImage?: DisplayImage // Optional background image
+  highlightImage?: DisplayImage // Optional highlight image
+}

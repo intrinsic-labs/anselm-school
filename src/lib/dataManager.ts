@@ -31,6 +31,11 @@ import { getAnselmSection } from './dataManagers/anselmSection'
 // Re-export anselm section data manager
 export { getAnselmSection }
 
+// Import giving section data manager
+import { getGivingSection } from './dataManagers/givingSection'
+// Re-export giving section data manager
+export { getGivingSection }
+
 // Re-export quote data managers for centralized API
 export { 
   getQuotes, 
