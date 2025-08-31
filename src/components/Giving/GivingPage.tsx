@@ -13,17 +13,18 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
     <div className="flex flex-col">
       {/* Top section with background image */}
       <div
-        className="relative min-h-[50vh] flex-col items-center justify-center"
+        className="relative min-h-[50vh] flex-col items-center justify-center px-4"
         style={{ backgroundColor: "var(--secondary)" }}
       >
         {/* Background image */}
         {backgroundImage && (
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 overflow-hidden justify-items-end">
             <Image
               src={backgroundImage.url}
               alt={backgroundImage.alt}
-              fill
-              className="object-cover opacity-75"
+              width={1000}
+              height={80}
+              className="object-cover opacity-75 pr-4 overflow-hidden"
             />
           </div>
         )}
@@ -53,13 +54,13 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
 
           {/* Highlight image at bottom */}
           {highlightImage && (
-            <div className="justify-items-end">
-              <div className="drop-shadow-lg">
+            <div className="justify-items-end -mb-32">
+              <div className="shadow-2xl shadow-black">
                 <Image
                   src={highlightImage.url}
                   alt={highlightImage.alt}
-                  width={200}
-                  height={200}
+                  width={250}
+                  height={250}
                   className="object-cover"
                 />
               </div>
@@ -69,9 +70,9 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
       </div>
 
       {/* Bottom section with white background */}
-      <div className="relative bg-white">
+      <div className="relative bg-white px-4">
         {/* section padding */}
-        <div className="max-w-2xl mx-auto py-12">
+        <div className="max-w-2xl mx-auto py-12 mt-18">
           <div className="text-left italic text-primary">
             <h1>Thank You.</h1>
           </div>
