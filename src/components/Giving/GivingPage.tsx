@@ -55,13 +55,13 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
           {/* Highlight image at bottom */}
           {highlightImage && (
             <div className="justify-items-end -mb-32">
-              <div className="shadow-2xl shadow-black">
+              <div className="">
                 <Image
                   src={highlightImage.url}
                   alt={highlightImage.alt}
                   width={250}
                   height={250}
-                  className="object-cover"
+                  className="object-cover shadow-2xl shadow-black"
                 />
               </div>
             </div>

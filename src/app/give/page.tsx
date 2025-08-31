@@ -8,7 +8,7 @@ export default async function Giving() {
   const givingData = await getGivingSection()
 
   return (
-    <main className="min-h-screen flex flex-col pt-26">
+    <main className="min-h-screen flex flex-co pt-20 md:pt-26">
       {/* Giving Section - Dynamic from Sanity */}
       {givingData && (
         <GivingSection givingSection={givingData} />

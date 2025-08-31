@@ -37,7 +37,10 @@ export default async function RootLayout({
       <body
         className={`${newsreader.variable} ${ibmPlexMono.variable} antialiased`}
       >
-        <Navigation logoImage={heroData?.logomark} logoType={heroData?.logotype} />
+        <Navigation 
+          logoImage={heroData?.logomark} 
+          // logoType={heroData?.logotype} 
+        />
         {children}
         <Footer />
       </body>

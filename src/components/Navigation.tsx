@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Image } from "next-sanity/image";
+import { links } from "../lib/links"
 
 export default function Navigation({
   logoImage,
-  logoType
+  // logoType
 }: {
   logoImage?: { url: string; alt: string };
-  logoType?: { url: string; alt: string };
+  // logoType?: { url: string; alt: string };
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,7 +53,7 @@ export default function Navigation({
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-6 ${bgClass}`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3 md:py-6 ${bgClass}`}
       >
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
@@ -136,14 +137,21 @@ export default function Navigation({
 
           <div className="flex flex-col items-center space-y-8 py-32">
             <Link
-              href="/"
+              href={links.home}
               className="text-5xl text-white hover:text-secondary"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
-              href="/give"
+              href={links.identity}
+              className="text-5xl text-white hover:text-secondary"
+              onClick={toggleMenu}
+            >
+              About
+            </Link>
+            <Link
+              href={links.donate}
               className="text-5xl text-white hover:text-secondary"
               onClick={toggleMenu}
             >
@@ -152,7 +160,21 @@ export default function Navigation({
             
           </div>
           
-          {logoType && (
+          <div className="mt-16 pt-8 border-t border-white/20 text-center">
+            <p className="text-sm opacity-50 text-white">
+              Copyright © 2025. <span className="text-white">The Anselm School</span>. All rights reserved. Powered by{' '}
+              <Link
+                href="https://intrinsiclabs.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Intrinsic Labs
+              </Link>
+            </p>
+          </div>
+          
+          {/*{logoType && (
             <Image
               src={logoType.url}
               alt={logoType.alt}
@@ -160,7 +182,7 @@ export default function Navigation({
               width={150}
               height={100}
             />
-          )}
+          )}*/}
         </div>
       )}
     </>
