@@ -1,4 +1,4 @@
-import { getHeroSection, getPurposeSection, getIdentitySection, getAnselmSection, getGivingSection } from '../lib/dataManager'
+import { getHeroSection, getPurposeSection, getIdentitySection, getAnselmSection } from '../lib/dataManager'
 import { Hero } from '../components/Hero'
 import Quote from '../components/Quote'
 import PurposeSection from '../components/PurposeSection'
@@ -8,7 +8,7 @@ import AnselmSection from '../components/AnselmSection'
 import LastingSection from '../components/LastingSection'
 import { getLastingSection } from '../lib/dataManager'
 import Footer from '../components/Footer'
-import GivingSection from '../components/GivingPage'
+import GivingSection from '../components/Giving/GivingPage'
 
 // Revalidate content every hour (3600 seconds)
 export const revalidate = 3600
@@ -20,7 +20,7 @@ export default async function Home() {
   const identityData = await getIdentitySection()
   const anselmData = await getAnselmSection()
   const lastingData = await getLastingSection()
-  const givingData = await getGivingSection()
+  // const givingData = await getGivingSection()
 
   if (!heroData) {
     return (
@@ -49,9 +49,9 @@ export default async function Home() {
       )}
       
       {/* Giving Section - Dynamic from Sanity */}
-      {givingData && (
+      {/*{givingData && (
         <GivingSection givingSection={givingData} />
-      )}
+      )}*/}
 
       {/* Purpose Section Highlight Quote - Dynamic from Sanity */}
       {purposeData?.highlightQuote && (

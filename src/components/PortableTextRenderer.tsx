@@ -6,13 +6,15 @@ interface PortableTextRendererProps {
   className?: string
   variant?: 'default' | 'large' | 'small'
   textColor?: 'white' | 'dark'
+  underlineItalic?: boolean
 }
 
 export default function PortableTextRenderer({ 
   value, 
   className = '', 
   variant = 'default',
-  textColor = 'white'
+  textColor = 'white',
+  underlineItalic = true
 }: PortableTextRendererProps) {
   
   // Base prose classes with size variants
@@ -65,7 +67,7 @@ export default function PortableTextRenderer({
               <strong className="font-semibold">{children}</strong>
             ),
             em: ({ children }) => (
-              <em className="italic border-b-2 border-secondary">{children}</em>
+              <em className={`italic ${underlineItalic ? 'border-b-2 border-secondary' : ''}`}>{children}</em>
             ),
             underline: ({ children }) => (
               <span className="underline">{children}</span>
