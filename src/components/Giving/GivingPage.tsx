@@ -72,7 +72,7 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
       {/* Bottom section with white background */}
       <div className="relative bg-white px-4">
         {/* section padding */}
-        <div className="max-w-2xl mx-auto py-12 mt-18">
+        <div className="max-w-2xl mx-auto pt-12 mt-18">
           <div className="text-left italic text-primary">
             <h1>Thank You.</h1>
           </div>

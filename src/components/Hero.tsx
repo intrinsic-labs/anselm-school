@@ -79,9 +79,7 @@ export function Hero({ data }: HeroProps) {
 
 
           <a
-            href={links.donate}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={"/give"}
             className="btn-outline-primary"
           >
             {data.donationCtaText}
