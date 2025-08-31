@@ -10,7 +10,7 @@ export default function GivingSection({ givingSection }: GivingSectionProps) {
   const { heading, impact, backgroundImage, highlightImage } = givingSection;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       {/* Top section with background image */}
       <div
         className="relative min-h-[50vh] flex-col items-center justify-center px-4"
