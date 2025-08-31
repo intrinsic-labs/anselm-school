@@ -86,7 +86,7 @@ export default function Navigation({
                 }
               }}
             >
-              <h5 className={`text-white hidden sm:block ${
+              <h5 className={`text-white hover:text-secondary hidden sm:block ${
                 isScrolled ? "" : isMenuOpen ? "opacity-50" : pathname === "/" ? "opacity-0" : "opacity-50"
                 }`}>THE ANSELM SCHOOL</h5>
             </Link>
@@ -137,14 +137,14 @@ export default function Navigation({
           <div className="flex flex-col items-center space-y-8 py-32">
             <Link
               href="/"
-              className="text-5xl text-white"
+              className="text-5xl text-white hover:text-secondary"
               onClick={toggleMenu}
             >
               Home
             </Link>
             <Link
               href="/give"
-              className="text-5xl text-white"
+              className="text-5xl text-white hover:text-secondary"
               onClick={toggleMenu}
             >
               Give

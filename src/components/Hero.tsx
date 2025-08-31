@@ -3,7 +3,6 @@
 import { HeroSectionDisplay } from '../types/display'
 import Image from 'next/image'
 import GetUpdatesButton from './GetUpdatesButton'
-import { links } from '../lib/links'
 
 interface HeroProps {
   data: HeroSectionDisplay
